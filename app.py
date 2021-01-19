@@ -4,6 +4,7 @@ from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from datetime import datetime, timezone
 from passlib.hash import pbkdf2_sha256 as hasher
+import os
 
 
 def utc_to_local(utc_dt):
@@ -11,7 +12,7 @@ def utc_to_local(utc_dt):
 
 
 app = Flask(__name__)
-app.secret_key = "os.urandom(24).hex()"
+app.secret_key = os.urandom(24).hex()
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
@@ -543,4 +544,5 @@ def update_password():
 
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
