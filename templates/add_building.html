@@ -18,12 +18,15 @@
                 {% endfor %}
             </select>
         </div>
+        <label for="city" style="color: #111111" >City</label>
+        <div class="control">
         <select class="form-select" aria-label="Default select example" required="required" name="city">
             <option selected>Pick One</option>
             {% for cit in cities %}
             <option value="{{ cit["id"] }}">{{ cit["name"] }}</option>
             {% endfor %}
         </select>
+        </div>
 
       <div class="mb-3">
         <label for="district" style="color: #111111" >District</label>

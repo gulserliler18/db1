@@ -1,7 +1,7 @@
 {% extends"temp.html" %}
-{% block title %}{% if res %}Set Residence for a Citizen{% else %}Set Ownership of an Apartment{% endblock %}
+{% block title %}{% if res==1 %}Set Residence for a Citizen{% else %}Set Ownership of an Apartment{% endblock %}
 {% block content %}
-    {% if res %}
+    {% if res==1 %}
     <h1>Set Residence for a Citizen</h1>
     {% else %}
     <h1>Set Ownership of an Apartment</h1>
