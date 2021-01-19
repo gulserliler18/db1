@@ -1,8 +1,11 @@
 {% extends"temp.html" %}
-{% block title %}Set Residence for a Citizen{% endblock %}
+{% block title %}{% if res %}Set Residence for a Citizen{% else %}Set Ownership of an Apartment{% endblock %}
 {% block content %}
+    {% if res %}
     <h1>Set Residence for a Citizen</h1>
-
+    {% else %}
+    <h1>Set Ownership of an Apartment</h1>
+    {% endif %}
     <div class="form-group" style="width: 200px; margin: auto">
     <form action="" method="post" name="new_building">
         <label for="apartment_id" style="color: #111111" >ApartmentId</label>
@@ -15,12 +18,14 @@
             </select>
         </div>
         <label for="citizen_id" style="color: #111111" >CitizenId</label>
+        <div class="control">
         <select class="form-select" aria-label="Default select example" required="required" name="citizen_id">
             <option selected>Pick One</option>
             {% for cit in citizen %}
             <option value="{{ cit[0] }}">{{ cit[0] }}</option>
             {% endfor %}
         </select>
+        </div>
 
       <div class="field is-grouped">
           <button type="submit" class="btn btn-primary">Set</button>
