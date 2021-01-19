@@ -24,10 +24,10 @@ def load_user(ttt):
     return adictionary.get(ttt)
 
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'bsc'
+app.config['MYSQL_HOST'] = 'eu-cdbr-west-03.cleardb.net'
+app.config['MYSQL_USER'] = 'b219e0031eeaa1'
+app.config['MYSQL_PASSWORD'] = '92733fef'
+app.config['MYSQL_DB'] = 'heroku_62f82a549b59a6c'
 db = MySQL(app)
 
 
