@@ -497,7 +497,7 @@ def set_residence():
         flash("Residency Updated successfully")
         return redirect('/')
     cur.close()
-    return render_template("set_residence.html", citizen=cit, aps=aps )
+    return render_template("set_residence.html", citizen=cit, aps=aps, res=1)
 
 
 @app.route('/set_ownership', methods=['GET', 'POST'])
@@ -519,7 +519,7 @@ def set_ownership():
         flash("Ownership Updated successfully")
         return redirect('/')
     cur.close()
-    return render_template("set_residence.html", citizen=cit, aps=aps )
+    return render_template("set_residence.html", citizen=cit, aps=aps)
 
 
 @app.route('/update_password', methods=['GET', 'POST'])
