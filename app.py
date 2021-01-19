@@ -285,7 +285,7 @@ def add_complaint(building_id, apartment_id):
             cur.execute("SELECT Safety FROM building WHERE BuildingId=%s;", (building_id, ))
             s = cur.fetchone()
             cur.execute("UPDATE building SET Complaint = %s WHERE BuildingId=%s;", (n, building_id))
-            if s==1:
+            if s[0]==1:
                 cur.execute("UPDATE building SET Safety = 0 WHERE BuildingId=%s;", (building_id, ))
         db.connection.commit()
         cur.close()
