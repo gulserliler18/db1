@@ -442,7 +442,7 @@ def add_building():
         flash("building added successfully")
         return redirect('/')
     cur.close()
-    return render_template("add_building.html", cities=cities, con=con)
+    return render_template("add_building.html", cities=sorted(cities), con=con)
 
 
 @app.route('/buildings/<int:buildingid>/delete_building')
