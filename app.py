@@ -519,7 +519,7 @@ def set_ownership():
         flash("Ownership Updated successfully")
         return redirect('/')
     cur.close()
-    return render_template("set_residence.html", citizen=cit, aps=aps)
+    return render_template("set_residence.html", citizen=cit, aps=aps, res=0)
 
 
 @app.route('/update_password', methods=['GET', 'POST'])
