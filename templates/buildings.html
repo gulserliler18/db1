@@ -64,7 +64,7 @@
         <tbody style="text-align: left">
         {% for Building in bs %}
         <tr{% if Building.Safety == 1 %} class="success" {% elif Building.Safety == -1 %} class="danger" {% endif %}>
-            <td><a href="{{ url_for('building', buildingid=Building.BuildingId) }}">{{ Building.BuildingId }}</a></td><td>{{Building.City}}</td><td>{{Building.Dist}}</td><td>{{Building.Nh}}</td><td>{{Building.Str}}</td><td>{{Building.LR}}</td><td>{{Building.Complaint}}</td><td>{% if Building.Safety==1 %} Safe {% elif Building.Safety==-1 %} Unsafe{% endif %}</td>
+            <td><a href="{{ url_for('building', buildingid=Building.BuildingId) }}">{{ Building.BuildingId }}</a></td><td>{{Building.City}}</td><td>{{Building.Dist}}</td><td>{{Building.Nh}}</td><td>{{Building.Str}}</td><td>{{Building.LR}}</td><td>{{Building.Complaint}}</td><td>{% if Building.Safety==1 %} Safe {% elif Building.Safety==-1 %} Unsafe{% else %}Unknown{% endif %}</td>
         </tr>
         {% endfor %}
         </tbody>
