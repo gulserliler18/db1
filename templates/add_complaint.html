@@ -1,0 +1,33 @@
+{%  extends"temp.html" %}
+{% block title %} New Complaint {% endblock %}
+{% block content %}
+    {% if bid %}
+        <h1>New Complaint</h1>
+    <p>You are adding a complaint to your house with id:{{ bid }}</p>
+    {% elif complaint %}
+        <h1>Update Complaint</h1>
+    <p>You are updating your past complaint with ID: {{ complaint[0] }} which was dated: {{ complaint[4] }}. If you wish to delete your complaint just click delete. </p>
+    {% endif %}
+    <div class="list-group" style="width: 1000px; margin: auto">
+    <form action="" method="post" name="submit">
+    <a class="list-group-item list-group-item-action" style="margin: auto">
+        <label for="reason" style="color: #111111" >Your reason of complaint</label>
+    {% if not complaint %}
+          <textarea class="form-control" id="reason" name="Reason" rows="4" cols="50" placeholder="Enter your complaint here"></textarea>
+    {% else %}
+          <textarea class="form-control" id="reason" name="Reason" rows="4" cols="50" placeholder="{{ complaint[2] }}"></textarea>
+    {% endif %}
+    </a>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control">
+          <button type="submit" class="btn btn-primary">Submit</button>
+    {% if complaint %}
+          <button type="submit" class="btn btn-danger"><a style="color: darkred" href="{{ url_for("delete_complaint",complaint_id=complaint[0]) }}">Delete</a></button>
+    {% endif %}
+        </div>
+      </div>
+    </form>
+    </div>
+{% endblock %}

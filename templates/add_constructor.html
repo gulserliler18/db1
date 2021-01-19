@@ -1,0 +1,18 @@
+{%  extends"temp.html" %}
+{% block title %} New Constructor {% endblock %}
+{% block content %}
+    <div class="form-group" style="width: 300px; margin: auto">
+    <form action="" method="post" name="login">
+        <label for="citizenship_id" style="color: #111111" >Citizen that became a Constructor</label>
+        <div class="control">
+            <select class="form-select" aria-label="Default select example" required="required" name="citizenship_id">
+                <option selected>Pick One</option>
+                {% for cit in citizens %}
+                <option value="{{ cit }}">{{ cit }}</option>
+                {% endfor %}
+            </select>
+        </div>
+          <button type="search" class="btn btn-primary">Select</button>
+    </form>
+    </div>
+{% endblock %}

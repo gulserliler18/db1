@@ -1,0 +1,23 @@
+{% extends "temp.html" %}
+{% block title %}Reports{% endblock %}
+{% block content %}
+    {% if report %}
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ReportID</th>
+      <th scope="col">BuildingID</th>
+      <th scope="col">IssueDate</th>
+      <th scope="col">Safety Review</th>
+    </tr>
+  </thead>
+        <tbody style="text-align: left">
+        {% for rep in report %}
+        <tr{% if rep[2] == 1 %} class="success" {% elif rep[2] == -1 %} class="danger" {% endif %}>
+            <td>{{ rep[0] }}</td><td><a href="{{ url_for("building", buildingid=rep[1]) }}">{{ rep[1] }}</a></td><td>{{rep[4]}}</td><td>{% if rep[2] == -1 %} Unsafe {% elif rep[2] == 1 %} Safe {% endif %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

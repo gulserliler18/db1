@@ -1,0 +1,21 @@
+{% extends"temp.html" %}
+{% block title %}New Report{% endblock %}
+{% block content %}
+    <div class="form-group" style="width: 300px; margin: auto">
+    <form action="" method="post" name="login">
+        <label for="building_id" style="color: #111111" >ID of Building this report is for</label>
+        <div class="control">
+          <input type="number" class="form-control" name="building_id" class="input" placeholder="Enter BuildingID" required="required"/>
+        </div>
+        <label for="safety" style="color: #111111" >Safety</label>
+        <div class="control">
+            <select class="form-select" aria-label="Default select example" required="required" name="safety">
+                <option selected>Pick One</option>
+                <option value="1">Safe</option>
+                <option value="-1">Unsafe</option>
+            </select>
+        </div>
+          <button type="search" class="btn btn-primary">Search</button>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{%  extends"temp.html" %}
+{% block title %} Login {% endblock %}
+{% block content %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger" role="alert">
+        <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+    <h1 class="title">Login</h1>
+    <div class="form">
+    <form action="" method="post" name="login">
+      <div class="mb-3">
+        <label for="citizenship_id" class="label" style="color: #111111" >CitizenshipID</label>
+        <div class="control">
+          <input type="number" name="citizenship_id" class="input" required="required"/>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="label" style="color: #111111">Password</label>
+        <div class="control">
+          <input type="password" name="password" class="input" required="required"/>
+        </div>
+      </div>
+
+      <div class="mb-3 form-check">
+        <label for="is_official" class="label" style="color: #111111">Bist du Offizier?</label>
+        <div class="control">
+          <input type="checkbox" name="is_official" value="Yes"/>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button type="login" class="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </form>
+    </div>
+    <p>If you don't have an account you can Sign Up <a href="{{ url_for('signup') }}">here</a>.</p>
+{% endblock %}

@@ -1,0 +1,67 @@
+{%  extends"temp.html" %}
+{% block title %} {{ building.BuildingId }} {% endblock %}
+{% block content %}
+    <h1 class="title">Building</h1>
+    <table class="table">
+      <tr>
+          <th>BuildingID:</th>
+          <td>{{ building.BuildingId }}</td>
+      </tr>
+      <tr>
+        <th>City:</th>
+        <td>{{ building.City }}</td>
+      </tr>
+      <tr>
+        <th>District:</th>
+        <td>{{ building.Dist }}</td>
+      </tr>
+      <tr>
+        <th>Neighborhood:</th>
+        <td>{{ building.Nh }}</td>
+      </tr>
+      <tr>
+        <th>Street:</th>
+        <td>{{ building.Str }}</td>
+      </tr>
+      <tr>
+        <th>Building Control:</th>
+          {% if building.BC == 0 %}
+        <td>No</td>
+          {% else %}
+          <td>Yes</td>
+          {% endif %}
+      </tr>
+      <tr>
+        <th>Constructor:</th>
+        <td>{{ building.ConstructorID }}</td>
+      </tr>
+      <tr>
+        <th>Last Reviewed:</th>
+        <td>{{ building.LR }}</td>
+      </tr>
+      <tr>
+        <th>Complaints since last Review:</th>
+        <td>{{ building.Complaint }}</td>
+      </tr>
+      <tr>
+        <th>Safety:</th>
+        <td>{{ building.Safety }}</td>
+      </tr>
+      <tr>
+          <th>Reports:</th>
+          <td><a href="{{ url_for("reports", buildingid=building.BuildingId) }}">View all past reports</a></td>
+      </tr>
+    {% if current_user.is_authenticated %}
+    {% if current_user.is_official %}
+      <tr class="danger">
+          <th>Delete this building</th>
+          <td><a href="{{ url_for("delete_building", buildingid=building.BuildingId) }}">Delete</a></td>
+      </tr>
+      <tr class="danger">
+          <th>Mark this building as torn down</th>
+          <td><a href="{{ url_for("torn_building", buildingid=building.BuildingId) }}">Mark</a></td>
+      </tr>
+    {% endif %}
+    {% endif %}
+    </table>
+{% endblock %}

@@ -1,0 +1,46 @@
+{%  extends"temp.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-success" role="alert">
+        <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+    <h1>Building Safety Review System</h1>
+    {% if not current_user.is_authenticated %}
+    <p>
+        You can review the currently known safety state of any building without logging in. If you wish to add a complaint please
+        <a href="/login">login</a>.
+    </p>
+    {% else %}
+        <p>Welcome,{{ name }}</p>
+        {% if not current_user.is_official %}
+            {% if owned %}
+        <p> you own apartments below</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ApartmentID</th>
+                        <th>BuildingID</th>
+                        <th>City</th>
+                        <th>District</th>
+                        <th>Neighborhood</th>
+                        <th>Street</th>
+                        <th>Add Complaint</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: left">
+                    {% for x in owned %}
+                <tr>
+                    <td>{{ x[0] }}</td><td><a href="{{ url_for('building', buildingid=x[1]) }}">{{ x[1] }}</a></td><td>{{ x[2] }}</td><td>{{ x[3] }}</td><td>{{ x[4] }}</td><td>{{ x[5] }}</td><td><a href="{{ url_for('add_complaint', building_id=x[1], apartment_id=x[0]) }}">Add Complaint</a></td>
+                </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                {% endif %}
+            {% if resides %}
+            <p>Your current residence in database is: ApartmentID: {{ resides[0] }},BuildingID:<a href="{{ url_for('building', buildingid=resides[2]) }}"> {{ resides[2] }}</a> click <a href="{{ url_for('add_complaint', building_id=resides[2], apartment_id=resides[0]) }}">here</a> if you wish to add a complaint to your residence</p>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Building Safety Review System - {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/webapp.css"/>
+  </head>
+  <body>
+{% if not current_user.is_authenticated %}
+    <ul>
+            <li> <a class="button is-link" href="{{ url_for('home_page') }}">Home</a> </li>
+           <li> <a class="button is-link" href="{{ url_for('buildings') }}">Buildings</a> </li>
+           <li style="float:right"> <a class="button is-link" href="{{ url_for('login') }}">Log in</a> </li>
+           <li style="float:right"> <a class="button is-link" href="{{ url_for('signup') }}">Sign up</a> </li>
+    </ul>
+    {% else %}
+    <ul>
+            <li> <a class="button is-link" href="{{ url_for('home_page') }}">Home</a> </li>
+          <li>  <a class="button is-link" href="{{ url_for('buildings') }}">Buildings</a> </li>
+          <li>  <a class="button is-link" href="{{ url_for('constructor') }}">Constructors</a> </li>
+    {% if current_user.is_official %}
+        <li><a class="button is-link" href="{{ url_for('add_report') }}">Add Report</a></li>
+        <li><a class="button is-link" href="{{ url_for('add_constructor') }}">Add Constructor</a></li>
+        <li><a class="button is-link" href="{{ url_for('add_building') }}">Add Building</a></li>
+        <li><a class="button is-link" href="{{ url_for('set_residence') }}">Set Residence</a></li>
+        <li><a class="button is-link" href="{{ url_for('set_ownership') }}">Set Ownership</a></li>
+    {% else %}
+          <li>  <a class="button is-link" href="{{ url_for('your_complaints') }}">Your Complaints</a> </li>
+        <li><a class="button is-link" href="{{ url_for('update_password') }}">Update Your Password</a></li>
+    {% endif %}
+          <li style="float:right">  <a class="button is-link" href="{{ url_for('logout') }}">Log out</a> </li>
+    </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+
+    <footer>
+      <small>&copy; 2021, Richard Z. Kruspe</small>
+    </footer>
+  </body>
+</html>

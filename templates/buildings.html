@@ -1,0 +1,89 @@
+{%  extends"temp.html" %}
+{% block title %} Buildings {% endblock %}
+{% block content %}
+    <h1 class="title">Buildings</h1>
+    {% if cit %}
+    <p> You can click on the city you wish to see the buildings of on the drop-down list below</p>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose City<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for city in cit %}
+                <li><a href="{{ url_for('buildings_c', city=city) }}">{{ city }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if dis %}
+    <p> You can click on the district you wish to see the buildings of on the drop-down list below</p>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose District<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for district in dis %}
+                <li><a href="{{ url_for('buildings_cd', city=City, district=district) }}">{{ district }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if nh %}
+    <p> You can click on the neighborhood you wish to see the buildings of on the drop-down list below</p>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Neighborhood<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for neighborhood in nh %}
+                <li><a href="{{ url_for('buildings_cdn', city=City, district=District, neighborhood=neighborhood) }}">{{ neighborhood }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if st %}
+    <p> You can click on the street you wish to see the buildings of on the drop-down list below</p>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Street<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for street in st %}
+                <li><a href="{{ url_for('buildings_cdns', city=City, district=District, neighborhood=Neighborhood, street=street) }}">{{ street }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if bs %}
+    {% if City %}
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">BuildingId</th>
+      <th scope="col">City</th>
+      <th scope="col">District</th>
+      <th scope="col">Neighborhood</th>
+      <th scope="col">Street</th>
+      <th scope="col">Last Reviewed</th>
+      <th scope="col">Complaints since last Review</th>
+      <th scope="col">Safety</th>
+    </tr>
+  </thead>
+        <tbody style="text-align: left">
+        {% for Building in bs %}
+        <tr{% if Building.Safety == 1 %} class="success" {% elif Building.Safety == -1 %} class="danger" {% endif %}>
+            <td><a href="{{ url_for('building', buildingid=Building.BuildingId) }}">{{ Building.BuildingId }}</a></td><td>{{Building.City}}</td><td>{{Building.Dist}}</td><td>{{Building.Nh}}</td><td>{{Building.Str}}</td><td>{{Building.LR}}</td><td>{{Building.Complaint}}</td><td>{% if Building.Safety==1 %} Safe {% elif Building.Safety==-1 %} Unsafe{% endif %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <td scope="col">Number of Buildings</td><td scope="col">City</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in bs %}
+            <tr>
+                <td>{{ b[0] }}</td><td>{{ b[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {% endif %}
+{% endblock %}

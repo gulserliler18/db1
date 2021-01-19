@@ -1,0 +1,70 @@
+{% extends"temp.html" %}
+{% block title %}
+    New Building
+{% endblock %}
+{% block content %}
+    <h1 class="title">New Building</h1>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    <div class="form-group" style="width: 200px; margin: auto">
+    <form action="" method="post" name="new_building">
+        <label for="constructor_id" style="color: #111111" >Constructor of the building</label>
+        <div class="control">
+            <select class="form-select" aria-label="Default select example" required="required" name="constructor_id">
+                <option selected>Pick One</option>
+                {% for cit in con %}
+                <option value="{{ cit[0] }}">{{ cit[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <select class="form-select" aria-label="Default select example" required="required" name="city">
+            <option selected>Pick One</option>
+            {% for cit in cities %}
+            <option value="{{ cit["id"] }}">{{ cit["name"] }}</option>
+            {% endfor %}
+        </select>
+
+      <div class="mb-3">
+        <label for="district" style="color: #111111" >District</label>
+        <div class="control">
+          <input type="text" class="form-control" name="district" class="input" required="required" />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="neighborhood" style="color: #111111" >Neighborhood</label>
+        <div class="control">
+          <input type="text" class="form-control" name="neighborhood" class="input" required="required" />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="street" style="color: #111111" >Street</label>
+        <div class="control">
+          <input type="text" class="form-control" name="street" class="input" required="required" />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="number_of_apartments" style="color: #111111" >How Many Apartments it has</label>
+        <div class="control">
+          <input type="number" class="form-control" name="number_of_apartments" class="input" required="required"/>
+        </div>
+      </div>
+
+        <label for="building_control" style="color: #111111" >Was it built under Building Control supervision</label>
+        <div class="control">
+            <select class="form-select" aria-label="Default select example" required="required" name="building_control">
+                <option selected>Pick One</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+      <div class="field is-grouped">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}

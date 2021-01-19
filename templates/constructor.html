@@ -1,0 +1,29 @@
+{%  extends"temp.html" %}
+{% block title %}Constructors{% endblock %}
+{% block content %}
+    <div class="form-group" style="width: 200px; margin: auto">
+    <form action="" method="post" name="login">
+        <label for="name" style="color: #111111" >Search Constructor Names</label>
+        <div class="control">
+          <input type="text" class="form-control" name="name" class="input" placeholder="Enter either first or last name here"/>
+        </div>
+          <button type="search" class="btn btn-primary">Search</button>
+    </form>
+    </div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name Surname</th>
+      <th scope="col">Buildings Built</th>
+      <th scope="col">Buildings Torn Down at earthquakes</th>
+    </tr>
+  </thead>
+        <tbody style="text-align: left">
+        {% for constructor in cl %}
+        <tr class="info">
+            <td>{{ constructor[0] }}</td><td>{{constructor[1]}}</td><td>{{constructor[2]}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

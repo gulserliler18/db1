@@ -1,0 +1,45 @@
+{% extends"temp.html" %}
+{% block title %}{% if not current_user.is_authenticated %}
+    SignUp{% else %} Update Passsword{% endif %}
+{% endblock %}
+{% block content %}
+    <h1 class="title">Sign Up</h1>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    <div class="form-group" style="width: 200px; margin: auto">
+    <form action="" method="post" name="login">
+    {% if not current_user.is_authenticated %}
+      <div class="mb-3">
+        <label for="citizenship_id" style="color: #111111" >CitizenshipID</label>
+        <div class="control">
+          <input type="number" class="form-control" name="citizenship_id" class="input" required="required"/>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="full_name" style="color: #111111" >Full Name</label>
+        <div class="control">
+          <input type="text" class="form-control" name="full_name" class="input" />
+        </div>
+      </div>
+    {% endif %}
+      <div class="mb-3">
+        <label for="password" style="color: #111111">{% if not current_user.is_authenticated %}Password{% else %}New Password{% endif %}</label>
+        <div class="control">
+          <input type="password" class="form-control" name="password" class="input" required="required"/>
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="rpassword" style="color: #111111;">Re-Enter Password</label>
+          <input type="password" class="form-control" name="rpassword" class="input" required="required"/>
+        </div>
+
+      <div class="field is-grouped">
+          <button type="login" class="btn btn-primary">Sign Up</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}

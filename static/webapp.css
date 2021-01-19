@@ -1,0 +1,58 @@
+h1 {
+    color: black;
+    text-align: center;
+}
+
+div.form {
+    display: block;
+    text-align: center;
+}
+
+body {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
+body{
+    background-color: lightgray;
+}
+
+div.complaints{
+    background-color: aquamarine;
+}
+
+ul.complaints {
+    background-color: aquamarine;
+}
+
+li.complaints {
+    background-color: aquamarine;
+}

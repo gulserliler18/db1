@@ -1,0 +1,13 @@
+{%  extends"temp.html" %}
+{% block title %} Your Complaints {% endblock %}
+{% block content %}
+    <h1>Your Complaints</h1>
+    {% if complaints %}
+        <p>Click on your compliant if you wish to update your reason</p>
+            <div class="list-group" style="width: 1000px; margin: auto">
+            {% for complaint in complaints %}
+                <a class="list-group-item list-group-item-action" href="{{ url_for('update_complaint', complaint_id=complaint[0]) }}"><label for="reason">Complaint with ID:{{ complaint[0] }} for Building with ID:{{ complaint[3] }}</label><textarea class="form-control" id="reason" name="Reason" rows="4" cols="50" readonly>{{ complaint[2] }}</textarea></a>
+            {% endfor %}
+            </div>
+    {% endif %}
+{% endblock %}
